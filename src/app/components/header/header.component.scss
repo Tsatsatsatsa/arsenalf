@@ -1,0 +1,135 @@
+@import '../../../styles.scss';
+
+.header {
+    &__sub {
+        height: 40px;
+    }
+
+    &__container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__reg--inner {
+        width: 30px;
+        height: 30px;
+        flex-grow: 1;
+        display: flex;
+        justify-content: end;
+        color: var(--color-light);
+    }
+
+    &__menu {
+        height: 70px;
+        display: flex;
+
+        &--logo {
+            display: flex;
+            align-items: center;
+            margin-right: 15px;
+        }
+
+        &::before {
+            background-color: hsla(0, 0%, 100%, .3);
+            content: "";
+            display: block;
+            height: 1px;
+            left: 50%;
+            position: absolute;
+            top: 40px;
+            transform: translateX(-50%);
+            width: 100%;
+        }
+
+        &--list {
+            display: inline-flex;
+            align-items: center;
+            gap: 25px;
+            height: inherit;
+
+
+
+        }
+
+        &--list:hover &--item:not(:hover) {
+            opacity: 0.5;
+        }
+
+        &--item {
+            height: inherit;
+        }
+
+        &--link {
+            display: flex;
+            align-items: center;
+            position: relative;
+            color: inherit;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            height: inherit;
+            padding: 0 10px;
+
+            &::after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 4px;
+                background-color: var(--color-light);
+                opacity: 0;
+            }
+
+
+            &:hover::after {
+                opacity: 1;
+            }
+
+            &.active::after {
+                opacity: 1;
+            }
+
+        }
+
+
+
+    }
+
+    &__user {
+        height: 32px;
+        color: var(--color-light);
+        background-color: var(--color-accent-third);
+        border-radius: 32px;
+        align-items: center;
+        display: flex;
+        padding: 0 0 0 15px;
+        min-width: 75px;
+        transition:  background-color .4s ease;
+        &:hover &--initials,&:hover {
+            background-color: var(--color-accent-hover);
+        }
+
+        &--initials {
+            height: 32px;
+            width: 32px;
+            text-transform: uppercase;
+            background-color: var(--color-accent);
+            border-radius: 100%;
+            border: 1px solid var(--color-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 8px;
+            transition:  background-color .4s ease;
+        }
+    }
+
+
+}
+
+img {
+    height: 100px;
+    width: 100%;
+}

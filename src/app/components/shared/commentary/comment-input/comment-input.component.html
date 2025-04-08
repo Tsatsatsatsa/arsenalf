@@ -1,0 +1,13 @@
+<div class="comment__input">
+    <img class="comment__avatar" src="/user.jpg" alt="User">
+    <!-- <div class="comment__avatar">{{userName[0]}}</div> -->
+    <mat-form-field [style.fontSize]="16">
+        <mat-label>Add a Comment</mat-label>
+        <textarea matInput [(ngModel)]="comment" cdkAutosizeMinRows="1"  cdkTextareaAutosize
+        #autosize="cdkTextareaAutosize" class="comment__input--field"></textarea>
+    </mat-form-field>
+</div>
+<div class="comment__actions">
+    <button class="comment__button comment__button--cancel" (click)="clearComment()">Cancel</button>
+    <button class="comment__button comment__button--submit" (click)="newComment()">Comment</button>
+</div>

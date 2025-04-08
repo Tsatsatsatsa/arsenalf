@@ -1,0 +1,13 @@
+
+    <div class="card" [routerLink]="['/news', post?.id]">
+        <article>
+            <h2 class="card__header">{{post?.title}}</h2>
+            <div class="card__date">{{post?.createdAt}}</div>
+            <div class="card__content">
+                <figure class="card__image-wrapper">
+                    <img src="{{post?.imgUrl}}" alt="{{post?.title}}" height="200px" width="200px">
+                </figure>
+                <div class="card__text">{{post?.shortDescription}}</div>
+            </div>
+        </article>
+    </div>

@@ -1,0 +1,121 @@
+.comment {
+    display: flex;
+    margin-block: 15px;
+
+    &__content {
+        padding-left: 16px;
+        flex-grow: 1;
+    }
+
+    &__header {
+        margin-bottom: 8px;
+    }
+
+    &__author {
+        margin-right: 4px;
+        overflow: hidden;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    &__time {
+        font-size: 12px;
+        color: #606060;
+    }
+
+    &__body {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: break-word;
+        max-height: 100px;
+        margin-bottom: 10px;
+
+    }
+
+    &__actions {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 10px;
+   
+    }
+    &__social {
+        display: flex;
+        align-items: center;
+    }
+    &__btn {
+        color: black;
+        border: none;
+        background-color: transparent;
+        border-radius: 18px;
+        padding: 8px 16px;
+        font-weight: 500;
+
+
+        &--replies {
+            color: #065fd4;
+            font-size: 14px;
+            margin-left: 10px;
+            &:hover {
+                background-color: #def1ff
+            }
+           
+        }
+        &--reply {
+            font-size: 12px;
+            &:hover {
+                background-color: #e5e5e5
+            }
+        }
+
+        &--like,&--dislike{
+            padding: 8px;
+            &:hover {
+                background-color: #e5e5e5
+            }
+
+            &.active {
+                svg {
+                    fill:black;
+                }
+            }
+        }
+
+      
+    }
+
+    &__count {
+        font-size: 12px;
+        font-weight: 400;
+        color: #606060;
+    }
+
+}
+
+
+
+
+
+.comment__avatar {
+    text-transform: capitalize;
+    background-color: blueviolet;
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+svg {
+    width: 20px;
+    height: 20px;
+    fill: #6B7280
+  }
+
+  
+

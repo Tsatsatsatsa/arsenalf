@@ -1,0 +1,66 @@
+
+<section class="signup__card">
+    <div class="signup__card--container">
+            <h1 class="signup__card--header">Sign Up</h1>
+
+            <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" class="signup__card--form">
+           
+                <mat-form-field class="signup__card--field">
+                  <mat-label>Email</mat-label>
+                  <input type="email" matInput formControlName="email"
+                         placeholder="Ex. pat@example.com">
+                       
+                         @if (registrationForm.get('email').hasError && !registrationForm.get('email').hasError('required')) {
+                          <mat-error>Please enter a valid email address</mat-error>
+                        }
+                        @if (registrationForm.get('email').hasError('required')) {
+                          <mat-error>Email is <strong>required</strong></mat-error>
+                        }
+    
+                </mat-form-field>
+                <mat-form-field class="signup__card--field">
+                    <mat-label>Password</mat-label>
+                    <input type="password" matInput formControlName="password"
+                           placeholder="Password">
+                           @if (registrationForm.get('password').hasError && !registrationForm.get('password').hasError('required')) {
+                            <mat-error>Password must be at least 6 characters</mat-error>
+                          }
+                          @if (registrationForm.get('password').hasError('required')) {
+                            <mat-error>password is <strong>required</strong></mat-error>
+                          }
+      
+                  </mat-form-field>
+                  <mat-form-field class="signup__card--field">
+                    <mat-label>Repeat Password</mat-label>
+                    <input type="password" matInput formControlName="confirmPassword"
+                           placeholder="Confirm Password">
+                           @if (registrationForm.hasError('passwordMismatch')){
+                            <mat-error>Passwords do not match</mat-error>
+                          }
+                       
+                  </mat-form-field>
+                  <mat-form-field class="signup__card--field">
+                    <mat-label>User Name</mat-label>
+                    <input type="text" matInput formControlName="userName"
+                           placeholder="User Name">
+                           @if (registrationForm.get('userName').hasError && !registrationForm.get('userName').hasError('required')) {
+                            <mat-error>User name is required (min 3 characters)</mat-error>
+                          }
+                          @if (registrationForm.get('userName').hasError('required')) {
+                            <mat-error>username is <strong>required</strong></mat-error>
+                          }
+      
+                  </mat-form-field>
+                      <button [disabled]="registrationForm.invalid" class="signup__card--btn" mat-flat-button>
+                        Sign up
+                    </button>
+              </form>
+              <p  class="signup__card--text">Already have an account?
+                <a routerLink="/sign-in" class="signup__card--text--link">Sign in</a>
+              </p>
+    </div>
+</section>
+
+<footer style="background-color:blueviolet; height: 200px;">
+
+</footer>

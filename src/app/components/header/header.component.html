@@ -1,0 +1,55 @@
+<div class="header">
+    <div class="header__sub">
+
+    </div>
+    <div class="header__container">
+        <nav class="header__menu">
+            <a routerLink="/" class="header__menu--logo">
+                <img src="logo.png" alt="Logo" height="140" width="105px">
+            </a>
+
+            <ul class="header__menu--list">
+
+                <li class="header__menu--item">
+                    <a routerLink="/news" routerLinkActive="active" class="header__menu--link">News</a>
+                </li>
+                <li class="header__menu--item">
+                    <a routerLink="/videos" routerLinkActive="active" class="header__menu--link">Videos</a>
+                </li>
+                <li class="header__menu--item">
+                    <a  class="header__menu--link">Teams</a>
+                </li>
+                <li class="header__menu--item">
+                    <a  class="header__menu--link">Matches</a>
+                </li>
+                <li class="header__menu--item">
+                    <a class="header__menu--link">History</a>
+                </li>
+                <li class="header__menu--item">
+                    <a  class="header__menu--link">Club</a>
+                </li>
+
+            </ul>
+        </nav>
+        @if(user) {
+        <a routerLink="/user-profile"  class="header__user">
+            <p class="header__user--name">{{user.username}}</p>
+            <div class="header__user--initials">{{user.username[0]}}</div>
+        </a>
+        }@else {
+        <a routerLink="/sign-in" class="header__reg--inner">
+            <svg width="30" height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+                <g data-name="60.User" fill="#fff">
+                    <path
+                        d="M12 12a4 4 0 1 1 4-4 4 4 0 0 1-4 4zm0-6a2 2 0 1 0 2 2 2 2 0 0 0-2-2zM18.9 21.166l-1.972-.332a5 5 0 1 0-9.862 0l-1.966.332a7 7 0 1 1 13.806 0z" />
+                    <path
+                        d="M12 24a12 12 0 1 1 12-12 12.013 12.013 0 0 1-12 12zm0-22a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2z" />
+                </g>
+            </svg>
+        </a>
+        }
+
+    </div>
+
+
+</div>

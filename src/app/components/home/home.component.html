@@ -1,0 +1,15 @@
+
+<section class="home">
+    <h1 class="home__header">
+       {{posts[posts.length - 1]?.title}}
+    </h1>
+    <div class="home__content">
+        <a href="" class="home__content--link">
+            <img src="{{posts[posts.length - 1]?.imgUrl}}" alt="{{posts[0]?.title}}" class="home__content--img">
+        </a>
+        <div class="home__content--a">
+            <app-news-card [post]="posts[posts.length - 2]"></app-news-card>
+            <app-news-card [post]="posts[posts.length - 3]"></app-news-card>
+        </div>
+    </div>
+</section>

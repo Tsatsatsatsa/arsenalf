@@ -1,0 +1,40 @@
+@import '../styles.scss';
+header {
+    background: var(--color-accent);
+}
+
+
+.signup__header {
+    background-color: var(--color-light);
+    height: 70px;
+
+    &--inner {
+        max-width: 1280px;
+        margin-inline: auto;
+        height: inherit;
+        display: flex;
+        align-items: center;
+
+
+    }
+
+    &--logo {
+        height: 50px;
+    }
+
+
+}
+
+.main {
+    background-color: var(--color-gray-light);
+
+    &__section {
+        display: flex;
+        padding-block: 40px;
+
+        &--outlet {
+            flex-grow: 1;
+            margin-right: 20px;
+        }
+    }
+}

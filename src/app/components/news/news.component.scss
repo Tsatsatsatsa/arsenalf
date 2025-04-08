@@ -1,0 +1,9 @@
+.news-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    app-news-card {
+        width: calc(50% - 15px);
+    }
+}
+

@@ -1,0 +1,46 @@
+<section class="signin__card">
+    <div class="signin__card--container">
+            <h1 class="signin__card--header">Sign In</h1>
+
+            <form  [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="signin__card--form">
+           
+                <mat-form-field class="signin__card--field">
+                  <mat-label>Email</mat-label>
+                  <input type="email" matInput formControlName="email"
+                         placeholder="Ex. pat@example.com">
+                       
+                         @if (loginForm.get('email').hasError && !loginForm.get('email').hasError('required')) {
+                            <mat-error>Please enter a valid email address</mat-error>
+                          }
+                          @if (loginForm.get('email').hasError('required')) {
+                            <mat-error>Email is <strong>required</strong></mat-error>
+                          }
+      
+    
+                </mat-form-field>
+                <mat-form-field class="signin__card--field">
+                    <mat-label>Password</mat-label>
+                    <input type="password" matInput formControlName="password"
+                           placeholder="Password">
+                            @if (loginForm.get('password').hasError && !loginForm.get('password').hasError('required')) {
+                            <mat-error>loginForm must be at least 6 characters</mat-error>
+                          }
+                          @if (loginForm.get('password').hasError('required')) {
+                            <mat-error>password is <strong>required</strong></mat-error>
+                          }
+    
+    
+                  </mat-form-field>
+                      <button  class="signin__card--btn" mat-flat-button>
+                        Sign in
+                    </button>
+              </form>
+              <p class="signin__card--text">Don't have an account? 
+                <a routerLink="/sign-up" class="signin__card--text--link">Register here</a>
+              </p>
+    </div>
+</section>
+
+<footer style="background-color:blueviolet; height: 200px;">
+
+</footer>

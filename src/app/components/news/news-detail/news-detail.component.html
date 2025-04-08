@@ -1,0 +1,31 @@
+<div class="news-detail">
+    <div class="news-detail__container">
+
+        <h1 class="news-detail__title">{{post?.title}}</h1>
+        <div class="news-detail__meta">
+            <span class="news-detail__date">{{post?.createdAt}}</span>
+        </div>
+
+        <figure class="news-detail__image">
+            <img class="news-detail__image-img" src="{{post?.imgUrl}}" alt="{{post?.title}}">
+        </figure>
+
+        <div class="news-detail__content">
+            <h2 class="news-detail__subtitle">{{post?.shortDescription}}</h2>
+            <p class="news-detail__text">{{post?.article}}</p>
+        </div>
+    </div>
+
+
+   
+
+    <div class="news-detail--commentaries">
+        <app-comment-input ></app-comment-input>
+        @for(commentary of commentaries; track commentary.id) {
+            <app-comment [comment]="commentary"></app-comment>
+        }
+    </div>
+
+
+
+</div>
