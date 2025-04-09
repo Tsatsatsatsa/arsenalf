@@ -32,7 +32,7 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.authService.isLoggedIn$.subscribe(el => {
+    this.authService.isAuthenticated().subscribe(el => {
       this.user = el
     }
 
@@ -46,8 +46,8 @@ export class UserProfileComponent implements OnInit {
     .subscribe(el => console.log(el))
   }
 
-  logout() {
-    this.authService.logout();
+  signOut() {
+    this.authService.signOut();
     this.router.navigate(['/']);
   }
 

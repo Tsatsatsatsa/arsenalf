@@ -14,11 +14,11 @@ export class HeaderComponent implements OnInit {
   user
   ngOnInit(): void {
 
-    this.authService.isLoggedIn$.subscribe(el =>{
+    this.authService.isAuthenticated().subscribe(el => {
       this.user = el
     }
- 
-  )
+
+    )
   }
 
 }
