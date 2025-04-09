@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { TokenService } from './token.service';
+import { CurrentUser } from '../models/currentUser.interface';
 
 
 
@@ -13,12 +14,11 @@ export class AuthService {
   private readonly apiUrl: string = 'http://localhost:3000/';
   private http: HttpClient = inject(HttpClient);
   private tokenService = inject(TokenService);
-  private authStatus: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private authStatus: BehaviorSubject<CurrentUser | null> = new BehaviorSubject<CurrentUser | null>(this.tokenService.decodeToken());
 
   constructor() {
     this.authStatus.next(this.tokenService.decodeToken())
   }
-
 
 
   signIn(credentials: { email: string, password: string }): Observable<any> {
@@ -37,13 +37,12 @@ export class AuthService {
     )
   }
 
-
   signOut(): void {
     localStorage.removeItem('auth_token');
-    this.authStatus.next(false)
+    this.authStatus.next(null)
   }
 
-  isAuthenticated(): Observable<boolean> {
+  isAuthenticated(): Observable<CurrentUser | null> {
     return this.authStatus.asObservable();
   }
 
@@ -51,9 +50,4 @@ export class AuthService {
     this.tokenService.setToken(response);
     this.authStatus.next(this.tokenService.decodeToken());
   }
-
-  private hasToken(): boolean {
-    return !!this.tokenService.getToken();
-  }
-
 }

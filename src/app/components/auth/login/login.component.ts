@@ -13,11 +13,10 @@ import { AuthService } from '../../../services/auth.service';
 })
 export class LoginComponent {
 
-  loginForm: FormGroup;
-
-  public fb = inject(FormBuilder);
   private authService = inject(AuthService);
-  router = inject(Router);
+  private router = inject(Router);
+  fb = inject(FormBuilder);
+  loginForm: FormGroup;
 
   constructor() {
     this.loginForm = this.fb.group({

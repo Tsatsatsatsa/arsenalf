@@ -16,12 +16,15 @@ import { AuthService } from '../../../services/auth.service';
 })
 export class RegistrationComponent {
 
+
+  private authService = inject(AuthService);
+  private router = inject(Router);
+  private snackBar = inject(MatSnackBar);
+
+  fb = inject(FormBuilder);
   registrationForm: FormGroup;
 
-  public fb = inject(FormBuilder);
-  private authService = inject(AuthService)
-  private snackBar = inject(MatSnackBar);
-  router = inject(Router);
+
 
   constructor() {
     this.registrationForm = this.fb.group({
@@ -31,12 +34,10 @@ export class RegistrationComponent {
       userName: ['', [Validators.required, Validators.minLength(3)]],
     }, { validators: this.passwordMatchValidator });
 
-
-
   }
 
 
-  passwordMatchValidator(formGroup: FormGroup) {
+  private passwordMatchValidator(formGroup: FormGroup): { passwordMismatch: boolean } | null {
     const password = formGroup.get('password');
     const confirmPassword = formGroup.get('confirmPassword');
 

@@ -5,6 +5,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { PostService } from '../../services/post.service';
+import { CurrentUser } from '../../models/currentUser.interface';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-user-profile',
@@ -12,13 +14,15 @@ import { PostService } from '../../services/post.service';
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.scss'
 })
-export class UserProfileComponent implements OnInit {
+export class UserProfileComponent {
+
   private authService = inject(AuthService);
   private postService = inject(PostService);
-  router = inject(Router);
+  private router = inject(Router);
+
   fb = inject(FormBuilder);
   postForm: FormGroup;
-  user
+
 
   constructor() {
     this.postForm = this.fb.group({
@@ -30,20 +34,11 @@ export class UserProfileComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {
-
-    this.authService.isAuthenticated().subscribe(el => {
-      this.user = el
-    }
-
-
-    )
-  }
 
 
   onSubmit(): void {
     this.postService.createPost(this.postForm.value)
-    .subscribe(el => console.log(el))
+      .subscribe(el => console.log(el))
   }
 
   signOut() {

@@ -17,24 +17,24 @@
                     <a routerLink="/videos" routerLinkActive="active" class="header__menu--link">Videos</a>
                 </li>
                 <li class="header__menu--item">
-                    <a  class="header__menu--link">Teams</a>
+                    <a class="header__menu--link">Teams</a>
                 </li>
                 <li class="header__menu--item">
-                    <a  class="header__menu--link">Matches</a>
+                    <a class="header__menu--link">Matches</a>
                 </li>
                 <li class="header__menu--item">
                     <a class="header__menu--link">History</a>
                 </li>
                 <li class="header__menu--item">
-                    <a  class="header__menu--link">Club</a>
+                    <a class="header__menu--link">Club</a>
                 </li>
 
             </ul>
         </nav>
-        @if(user) {
-        <a routerLink="/user-profile"  class="header__user">
-            <p class="header__user--name">{{user.username}}</p>
-            <div class="header__user--initials">{{user.username[0]}}</div>
+        @if(currentUser$ | async; as currentUser) {
+        <a routerLink="/user-profile" class="header__user">
+            <p class="header__user--name">{{currentUser.username}}</p>
+            <div class="header__user--initials">{{currentUser.username[0]}}</div>
         </a>
         }@else {
         <a routerLink="/sign-in" class="header__reg--inner">
