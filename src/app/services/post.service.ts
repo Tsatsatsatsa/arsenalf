@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { BehaviorSubject, tap } from 'rxjs';
+import { BehaviorSubject, catchError, tap, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class PostService {
   post$ = this.postSubject.asObservable();
 
   getAllPosts() {
-    return this.http.get(this.apiUrl + 'posts');
+    return this.http.get(this.apiUrl + 'posts')
   }
 
   getPostById(id: string) {
@@ -25,10 +25,6 @@ export class PostService {
   createPost(post) {
     return this.http.post(this.apiUrl + 'posts', post);
   }
-
-
-
-
 
 
 }

@@ -15,8 +15,8 @@ import { CurrentUser } from '../../models/currentUser.interface';
 export class HeaderComponent implements OnInit {
 
   private authService = inject(AuthService);
-  currentUser$: Observable<CurrentUser>
-  currentUser: CurrentUser
+  currentUser$: Observable<CurrentUser>;
+  currentUser: CurrentUser;
 
   ngOnInit(): void {
     this.currentUser$ = this.authService.isAuthenticated();

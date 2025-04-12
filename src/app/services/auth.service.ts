@@ -14,10 +14,10 @@ export class AuthService {
   private readonly apiUrl: string = 'http://localhost:3000/';
   private http: HttpClient = inject(HttpClient);
   private tokenService = inject(TokenService);
-  private authStatus: BehaviorSubject<CurrentUser | null> = new BehaviorSubject<CurrentUser | null>(this.tokenService.decodeToken());
+  private authStatus: BehaviorSubject<CurrentUser | null> = new BehaviorSubject<CurrentUser | null>(null);
 
   constructor() {
-    this.authStatus.next(this.tokenService.decodeToken())
+    this.authStatus.next(this.tokenService.decodeToken());
   }
 
 
@@ -38,8 +38,8 @@ export class AuthService {
   }
 
   signOut(): void {
-    localStorage.removeItem('auth_token');
-    this.authStatus.next(null)
+    this.tokenService.removeToken();
+    this.authStatus.next(null);
   }
 
   isAuthenticated(): Observable<CurrentUser | null> {

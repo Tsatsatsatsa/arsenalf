@@ -1,12 +1,11 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { PostService } from '../../services/post.service';
-import { CurrentUser } from '../../models/currentUser.interface';
-import { Observable } from 'rxjs';
+import { AuthService } from '../../services/auth.service';
+
 
 @Component({
   selector: 'app-user-profile',
