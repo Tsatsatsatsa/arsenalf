@@ -1,9 +1,8 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  console.log(req,next,'auth')
 
-  const excludedUrls = ['auth/login', 'user'];
+  const excludedUrls = ['auth/signin', 'auth/signup'];
   
   if (excludedUrls.some(url => req.url.includes(url))) {
     return next(req); // Skip adding token

@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { NewsCardComponent } from '../news/news-card/news-card.component';
-import { PostService } from '../../services/post.service';
-import { IPost } from '../../../data/mock-data.service';
+import { NewsService } from '../news/news.service';
+import { IPost } from '../../models/post.interface';
 
 @Component({
   selector: 'app-home',
@@ -10,11 +10,19 @@ import { IPost } from '../../../data/mock-data.service';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-  private posetService = inject(PostService);
-  public posts: IPost[] = [];
+
+  private newsService = inject(NewsService);
+  posts: IPost[] = [];
 
   ngOnInit(): void {
-    this.posetService.getAllPosts().subscribe((posts: IPost[]) => this.posts = posts);
+    this.getPosts();
+  }
+
+
+  getPosts(): void {
+    this.newsService.getAllPosts().subscribe((posts: IPost[]) => {
+      this.posts = posts
+    });
   }
 
 

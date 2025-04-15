@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { PostService } from '../../services/post.service';
+import { NewsService } from '../news/news.service';
 import { AuthService } from '../../services/auth.service';
 
 
@@ -16,7 +16,7 @@ import { AuthService } from '../../services/auth.service';
 export class UserProfileComponent {
 
   private authService = inject(AuthService);
-  private postService = inject(PostService);
+  private newsService = inject(NewsService);
   private router = inject(Router);
 
   fb = inject(FormBuilder);
@@ -36,7 +36,7 @@ export class UserProfileComponent {
 
 
   onSubmit(): void {
-    this.postService.createPost(this.postForm.value)
+    this.newsService.createPost(this.postForm.value)
       .subscribe(el => console.log(el))
   }
 

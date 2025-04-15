@@ -1,14 +1,14 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IPost } from '../../../../data/mock-data.service';
 import { MatInputModule } from '@angular/material/input';
-import { PostService } from '../../../services/post.service';
+import { NewsService } from '../news.service';
 import { FormsModule } from '@angular/forms';
 import { CommentaryService } from '../../../services/commentary.service';
 import { CommonModule } from '@angular/common';
 import { CommentComponent } from '../../shared/commentary/comment/comment.component';
 import { CommentInputComponent } from '../../shared/commentary/comment-input/comment-input.component';
 import { switchMap } from 'rxjs';
+import { IPost } from '../../../models/post.interface';
 
 @Component({
   selector: 'app-news-detail',
@@ -22,7 +22,7 @@ export class NewsDetailComponent implements OnInit {
 
 
   private commentaryService = inject(CommentaryService);
-  private postService = inject(PostService);
+  private newsService = inject(NewsService);
   private activatedRoute: ActivatedRoute = inject(ActivatedRoute);
 
   public post: IPost;
@@ -39,7 +39,7 @@ export class NewsDetailComponent implements OnInit {
   loadPostAndComments() {
     const postId = this.activatedRoute.snapshot.paramMap.get('id');
     if (postId) {
-      this.postService.getPostById(postId).pipe(
+      this.newsService.getPostById(postId).pipe(
         switchMap((post: IPost) => {
           console.log(post)
           this.post = post

@@ -1,8 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { IPost } from '../../../data/mock-data.service';
 import { NewsCardComponent } from './news-card/news-card.component';
-import { PostService } from '../../services/post.service';
-import { Observable, map, of } from 'rxjs';
+import { NewsService } from './news.service';
+import { IPost } from '../../models/post.interface';
 
 @Component({
   selector: 'app-news',
@@ -12,11 +11,11 @@ import { Observable, map, of } from 'rxjs';
 })
 export class NewsComponent implements OnInit {
 
-  private posetService = inject(PostService);
+  private newsService = inject(NewsService);
   public posts: IPost[] = [];
 
   ngOnInit(): void {
-    this.posetService.getAllPosts()
+    this.newsService.getAllPosts()
       .subscribe({
         next: (posts: IPost[]) => this.posts = posts,
         error: (error) => console.log(error.error)

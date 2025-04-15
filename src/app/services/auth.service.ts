@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { TokenService } from './token.service';
-import { CurrentUser } from '../models/currentUser.interface';
+import { CurrentUser } from '../models/current-user.interface';
 
 
 
@@ -22,7 +22,7 @@ export class AuthService {
 
 
   signIn(credentials: { email: string, password: string }): Observable<any> {
-    return this.http.post(this.apiUrl + 'auth/login', credentials).pipe(
+    return this.http.post(this.apiUrl + 'auth/signin', credentials).pipe(
       tap((response: any) => {
         this.handleAuthentication(response.access_token);
       })
@@ -30,7 +30,7 @@ export class AuthService {
   }
 
   signUp(userData: { email: string, password: string, confirmPassword: string, userName: string }): Observable<any> {
-    return this.http.post(this.apiUrl + 'user', userData).pipe(
+    return this.http.post(this.apiUrl + 'auth/signup', userData).pipe(
       tap((response: any) => {
         this.handleAuthentication(response.access_token);
       })

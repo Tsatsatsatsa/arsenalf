@@ -17,7 +17,7 @@ export class CommentaryService {
 
 
   createComment(commentary, postId, parentCommentaryId) {
-    console.log(typeof commentary,typeof postId,typeof parentCommentaryId)
+    console.log(typeof commentary, typeof postId, typeof parentCommentaryId)
     return this.http.post(this.apiUrl + 'commentary', { commentary, postId, parentCommentaryId }).pipe(
       tap((commentary) => this.commentarySubject.next(commentary))
     );
@@ -30,14 +30,14 @@ export class CommentaryService {
 
 
 
-  
 
-   createReaction(reaction) {
-    return this.http.post(this.apiUrl + 'reaction',  reaction );
+
+  createReaction(reaction) {
+    return this.http.post(this.apiUrl + 'reaction', reaction);
   }
 
-  updateReaction(reaction) {
-   return this.http.put(this.apiUrl + 'reaction',  reaction );
+  updateReaction(reaction, commentaryId) {
+    return this.http.put(this.apiUrl + `reaction/${commentaryId}`, reaction);
   }
 
   deleteReaction(reactionId) {

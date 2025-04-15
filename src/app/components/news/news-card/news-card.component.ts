@@ -1,6 +1,6 @@
 import { Component, Input, OnInit} from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { IPost } from '../../../../data/mock-data.service';
+import { IPost } from '../../../models/post.interface';
 
 @Component({
   selector: 'app-news-card',

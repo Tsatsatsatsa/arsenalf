@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { AuthService } from '../../services/auth.service';
-import { CurrentUser } from '../../models/currentUser.interface';
+import { CurrentUser } from '../../models/current-user.interface';
 
 @Component({
   selector: 'app-header',

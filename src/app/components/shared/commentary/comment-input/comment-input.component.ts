@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { CommentaryService } from '../../../../services/commentary.service';
 import { ActivatedRoute } from '@angular/router';
-import { PostService } from '../../../../services/post.service';
+import { NewsService } from '../../../news/news.service';
 
 @Component({
   selector: 'app-comment-input',
@@ -13,7 +13,7 @@ import { PostService } from '../../../../services/post.service';
 })
 export class CommentInputComponent {
 
-  private postService = inject(PostService);
+  private newsService = inject(NewsService);
   private commentaryService = inject(CommentaryService);
   private activatedRoute: ActivatedRoute = inject(ActivatedRoute);
 

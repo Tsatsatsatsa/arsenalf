@@ -4,15 +4,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
-export interface IPost {
-  id: number;
-  title: string;
-  imgUrl: string;
-  commentaries:any,
-  shortDescription: string;
-  article?: string;
-  createdAt: string;
-}
+
 
 export interface Commentary {
   id: number;

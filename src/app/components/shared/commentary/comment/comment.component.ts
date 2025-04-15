@@ -21,6 +21,7 @@ export class CommentComponent implements OnInit {
 
 
   ngOnInit(): void {
+    console.log(this.comment)
     if (this.comment && !this.comment.reactions?.isDisliked && !this.comment.reactions?.isLiked) {
       this.comment.reactions.isPristine = true
     } else {
@@ -47,7 +48,6 @@ export class CommentComponent implements OnInit {
 
 
   executeReaction(action: 'like' | 'dislike') {
-console.log(action)
     if (action === 'like') {
       this.comment.reactions
       this.comment.reactions.isLiked = !this.comment.reactions.isLiked;
@@ -107,7 +107,7 @@ console.log(action)
           console.log('delete success' ,res)
         })
       } else {
-        this.commentaryService.updateReaction(body)
+        this.commentaryService.updateReaction(body,this.comment.id)
         .subscribe(res => {
           console.log('update success' ,res)
         })
