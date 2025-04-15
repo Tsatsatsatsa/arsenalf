@@ -1,4 +1,5 @@
 @import '../styles.scss';
+
 header {
     background: var(--color-accent);
 }
@@ -23,6 +24,18 @@ header {
     }
 
 
+}
+
+.signup__footer {
+    background-color: var(--color-light);
+    height: 70px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+
+    &--text {
+        color: var(--color-dark);
+    }
 }
 
 .main {

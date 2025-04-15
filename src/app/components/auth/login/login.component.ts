@@ -15,6 +15,7 @@ export class LoginComponent {
 
   private authService = inject(AuthService);
   private router = inject(Router);
+
   fb = inject(FormBuilder);
   loginForm: FormGroup;
 
@@ -26,13 +27,12 @@ export class LoginComponent {
   }
 
 
-  onSubmit() {
-    if (!this.loginForm.value) {
+  onSubmit(): void {
+    if (!this.loginForm.get('email').value || !this.loginForm.get('password').value) {
       return
     }
-    this.authService.signIn(this.loginForm.value).subscribe((el) => {
-      this.router.navigate(['/']);
-    }, (error) => console.log(error))
+    this.authService.signIn(this.loginForm.value)
+    this.router.navigate(['/']);
   }
 
 
