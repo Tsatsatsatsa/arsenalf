@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IPost } from '../../models/post.interface';
+import { IPost } from '../../models/post/post.interface';
+import { CreatePost } from '../../models/post/create-post.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +20,8 @@ export class NewsService {
     return this.http.get<IPost>(this.apiUrl + `posts/${id}`)
   }
 
-  createPost(post) {
-    return this.http.post(this.apiUrl + 'posts', post);
+  createPost(post: CreatePost): Observable<IPost> {
+    return this.http.post<IPost>(this.apiUrl + 'posts', post);
   }
 
 

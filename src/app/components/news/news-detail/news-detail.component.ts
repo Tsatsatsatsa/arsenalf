@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 import { CommentComponent } from '../../shared/commentary/comment/comment.component';
 import { CommentInputComponent } from '../../shared/commentary/comment-input/comment-input.component';
 import { switchMap } from 'rxjs';
-import { IPost } from '../../../models/post.interface';
+import { IPost } from '../../../models/post/post.interface';
 
 @Component({
   selector: 'app-news-detail',
@@ -19,14 +19,12 @@ import { IPost } from '../../../models/post.interface';
 export class NewsDetailComponent implements OnInit {
 
 
-
-
   private commentaryService = inject(CommentaryService);
   private newsService = inject(NewsService);
   private activatedRoute: ActivatedRoute = inject(ActivatedRoute);
 
-  public post: IPost;
-  public commentaries
+   post: IPost;
+  commentaries
 
 
   ngOnInit(): void {

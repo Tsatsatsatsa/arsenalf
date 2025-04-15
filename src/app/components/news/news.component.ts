@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { NewsCardComponent } from './news-card/news-card.component';
 import { NewsService } from './news.service';
-import { IPost } from '../../models/post.interface';
+import { IPost } from '../../models/post/post.interface';
 
 @Component({
   selector: 'app-news',
@@ -12,7 +12,7 @@ import { IPost } from '../../models/post.interface';
 export class NewsComponent implements OnInit {
 
   private newsService = inject(NewsService);
-  
+
   posts: IPost[] = [];
 
   ngOnInit(): void {

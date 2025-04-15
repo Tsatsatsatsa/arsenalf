@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { NewsCardComponent } from '../news/news-card/news-card.component';
 import { NewsService } from '../news/news.service';
-import { IPost } from '../../models/post.interface';
+import { IPost } from '../../models/post/post.interface';
 
 @Component({
   selector: 'app-home',
