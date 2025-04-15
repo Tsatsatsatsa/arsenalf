@@ -12,14 +12,17 @@ import { IPost } from '../../models/post.interface';
 export class NewsComponent implements OnInit {
 
   private newsService = inject(NewsService);
-  public posts: IPost[] = [];
+  
+  posts: IPost[] = [];
 
   ngOnInit(): void {
+    this.getPosts();
+  }
+
+  private getPosts(): void {
     this.newsService.getAllPosts()
-      .subscribe({
-        next: (posts: IPost[]) => this.posts = posts,
-        error: (error) => console.log(error.error)
-      }
+      .subscribe((posts: IPost[]) =>
+        this.posts = posts
       )
   }
 

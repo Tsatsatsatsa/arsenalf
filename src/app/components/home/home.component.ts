@@ -19,10 +19,11 @@ export class HomeComponent {
   }
 
 
-  getPosts(): void {
-    this.newsService.getAllPosts().subscribe((posts: IPost[]) => {
-      this.posts = posts
-    });
+  private getPosts(): void {
+    this.newsService.getAllPosts()
+      .subscribe((posts: IPost[]) => {
+        this.posts = posts
+      });
   }
 
 
