@@ -31,7 +31,7 @@
     
     
                   </mat-form-field>
-                      <button  class="signin__card--btn" mat-flat-button>
+                      <button  class="signin__card--btn" mat-flat-button [disabled]="loginForm.invalid || isLoading">
                         Sign in
                     </button>
               </form>

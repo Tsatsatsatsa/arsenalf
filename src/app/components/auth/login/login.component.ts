@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -15,9 +16,11 @@ export class LoginComponent {
 
   private authService = inject(AuthService);
   private router = inject(Router);
+  private snackBar = inject(MatSnackBar);
 
   fb = inject(FormBuilder);
   loginForm: FormGroup;
+  isLoading: boolean = false;
 
   constructor() {
     this.loginForm = this.fb.group({
@@ -28,11 +31,24 @@ export class LoginComponent {
 
 
   onSubmit(): void {
-    if (!this.loginForm.get('email').value || !this.loginForm.get('password').value) {
-      return
-    }
+    if (this.loginForm.invalid) return;
+
+    this.isLoading = true;
     this.authService.signIn(this.loginForm.value)
-    this.router.navigate(['/']);
+      .subscribe({
+        next: () => {
+          this.isLoading = false;
+          this.router.navigate(['/']);
+        },
+        error: () => {
+          this.isLoading = false;
+          this.snackBar.open('Invalid email or password, please try again.', 'Close', {
+            // panelClass: ['error-snackbar'],
+            verticalPosition: 'top',
+            horizontalPosition: 'end'
+          })
+        }
+      })
   }
 
 

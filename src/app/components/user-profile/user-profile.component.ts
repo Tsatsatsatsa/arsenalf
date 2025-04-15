@@ -36,7 +36,7 @@ export class UserProfileComponent {
 
 
   onSubmit(): void {
-    this.newsService.createPost(this.postForm.value)
+    this.newsService.createPost(this.postForm.value).subscribe(el => console.log(el))
   }
 
   signOut() {
