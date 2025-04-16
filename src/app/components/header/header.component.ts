@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 
 import { AuthService } from '../../services/auth.service';
 import { CurrentUser } from '../../models/current-user.interface';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-header',
@@ -15,11 +16,18 @@ import { CurrentUser } from '../../models/current-user.interface';
 export class HeaderComponent implements OnInit {
 
   private authService = inject(AuthService);
+  private notificationService = inject(NotificationService);
   currentUser$: Observable<CurrentUser>;
   currentUser: CurrentUser;
+notification
 
   ngOnInit(): void {
     this.currentUser$ = this.authService.isAuthenticated();
+    this.notificationService.getNotifications()
+    .subscribe(el => {
+      this.notification = el
+      console.log(this.notification)
+    })
   }
 
 }

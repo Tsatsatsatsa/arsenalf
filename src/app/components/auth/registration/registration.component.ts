@@ -40,7 +40,6 @@ export class RegistrationComponent {
     const password = formGroup.get('password');
     const confirmPassword = formGroup.get('confirmPassword');
 
-
     if (password.value !== confirmPassword.value) {
       confirmPassword.setErrors({ passwordMismatch: true });
       return { passwordMismatch: true };
@@ -50,10 +49,9 @@ export class RegistrationComponent {
     }
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.authService.signUp(this.registrationForm.value).subscribe({
       next: (response) => {
-        console.log(response)
         this.snackBar.open(response['message'], 'Close', {
           verticalPosition: 'top',
           horizontalPosition: 'end'
@@ -62,7 +60,6 @@ export class RegistrationComponent {
         this.router.navigate(['/sign-in']);
       },
       error: (error) => {
-        console.error('Registration failed', error);
         this.snackBar.open(error.message, 'Close', {
           panelClass: ['success-snackbar'],
           verticalPosition: 'top',
