@@ -42,7 +42,7 @@
           </div>
 
         <div class="comment__reply--form" *ngIf="showReplyForm">
-            <app-comment-input [id]="comment.id"></app-comment-input>
+            <app-comment-input [currentComment]="comment"></app-comment-input>
         </div>
 
         <div class="comment__replies--toggle" *ngIf="comment.replies?.length > 0">

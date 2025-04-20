@@ -34,15 +34,18 @@
         @if(currentUser$ | async; as currentUser) {
         <div class="header__user">
             <div class="header__notification">
-                <span class="header__notification--logo" [attr.notification]="notification?.length">
+                <span class="header__notification--logo" [attr.notification]="notifications.length > 0 ? notifications.length : null" (click)="showModal = !showModal">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24"
                         fill="currentColor" class="mercado-match" width="24" height="24" focusable="false">
                         <path
                             d="M22 19h-8.28a2 2 0 11-3.44 0H2v-1a4.52 4.52 0 011.17-2.83l1-1.17h15.7l1 1.17A4.42 4.42 0 0122 18zM18.21 7.44A6.27 6.27 0 0012 2a6.27 6.27 0 00-6.21 5.44L5 13h14z">
                         </path>
                     </svg>
+                    @if(showModal && notifications) {
+                        <app-header-notification-modal [notifications]="notifications" (click)="$event.stopPropagation()" (onCloseModal)="showModal = false"></app-header-notification-modal>
+                    }
                 </span>
-
+          
             </div>
 
             <a routerLink="/user-profile" class="header__link">

@@ -11,13 +11,20 @@ import { LoginComponent } from './components/auth/login/login.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, FooterComponent, AsideComponent, RegistrationComponent, LoginComponent],
+  imports: [
+    RouterOutlet,
+    HeaderComponent,
+    FooterComponent,
+    AsideComponent,
+    RegistrationComponent,
+    LoginComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
   private router = inject(Router);
- 
+
   isRegistrationPage(): boolean {
     const authRoutes = ['/sign-up', '/sign-in'];
     if (authRoutes.some(route => this.router.url.includes(route))) {

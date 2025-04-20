@@ -1,0 +1,25 @@
+<div class="notification">
+    <div class="notification__header">
+        <h3 class="notification__header-title">
+            Notification
+        </h3>
+        <button class="notification__header-btn" (click)="closeModal()">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M11.1664 10.0021L19.7396 1.41993C20.0646 1.09466 20.0646 0.569224 19.7396 0.243953C19.4147 -0.0813178 18.8898 -0.0813178 18.5649 0.243953L9.99167 8.8261L1.41845 0.243953C1.09352 -0.0813178 0.568632 -0.0813178 0.243699 0.243953C-0.0812331 0.569224 -0.0812331 1.09466 0.243699 1.41993L8.81691 10.0021L0.243699 18.5842C-0.0812331 18.9095 -0.0812331 19.4349 0.243699 19.7602C0.410331 19.927 0.61862 20.0021 0.835242 20.0021C1.05186 20.0021 1.26015 19.9187 1.42678 19.7602L10 11.1781L18.5732 19.7602C18.7398 19.927 18.9481 20.0021 19.1648 20.0021C19.3814 20.0021 19.5897 19.9187 19.7563 19.7602C20.0812 19.4349 20.0812 18.9095 19.7563 18.5842L11.1831 10.0021H11.1664Z"
+                    fill="white"></path>
+            </svg>
+        </button>
+    </div>
+    <div class="notification__list">
+
+        @for(notification of notifications ;track notification.id){
+        <div class="notification__list-item">
+            <div class="notification__list-item-author">{{notification.user.userName}}</div>
+            <div  class="notification__list-item-text">{{notification.commentary.commentary}}</div>
+
+        </div>
+        }
+    </div>
+
+</div>

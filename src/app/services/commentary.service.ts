@@ -13,12 +13,8 @@ export class CommentaryService {
   commentary$ = this.commentarySubject.asObservable();
 
 
-
-
-
-  createComment(commentary, postId, parentCommentaryId) {
-    console.log(typeof commentary, typeof postId, typeof parentCommentaryId)
-    return this.http.post(this.apiUrl + 'commentary', { commentary, postId, parentCommentaryId }).pipe(
+  createComment(commentary:string, postId: number, parentCommentaryId: number | null, parentCommentaryUserId: number | null) {
+    return this.http.post(this.apiUrl + 'commentary', { commentary, postId, parentCommentaryId, parentCommentaryUserId }).pipe(
       tap((commentary) => this.commentarySubject.next(commentary))
     );
   }

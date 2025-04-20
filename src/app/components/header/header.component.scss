@@ -102,6 +102,7 @@
         display: flex;
         align-items: center;
         height: inherit;
+        position: relative;
 
 
     }
@@ -129,6 +130,11 @@
                 left: 14px;
                 border-radius: 50%;
                 top: -5px;
+            }
+
+            &:not([notification]):after {
+                display: none;
+                content: none;
             }
         }
     }

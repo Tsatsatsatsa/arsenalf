@@ -4,12 +4,14 @@ import { RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { AuthService } from '../../services/auth.service';
+import { NotificationService } from '../notification/notification.service';
 import { CurrentUser } from '../../models/current-user.interface';
-import { NotificationService } from '../../services/notification.service';
+import { INotification } from '../../models/notification.interface';
+import { HeaderNotificationModalComponent } from './header-notification-modal/header-notification-modal.component';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterModule, CommonModule],
+  imports: [RouterModule, CommonModule, HeaderNotificationModalComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
@@ -17,17 +19,18 @@ export class HeaderComponent implements OnInit {
 
   private authService = inject(AuthService);
   private notificationService = inject(NotificationService);
+
+  notifications: INotification[] = [];
+  showModal: boolean = false;
   currentUser$: Observable<CurrentUser>;
   currentUser: CurrentUser;
-notification
 
   ngOnInit(): void {
     this.currentUser$ = this.authService.isAuthenticated();
     this.notificationService.getNotifications()
-    .subscribe(el => {
-      this.notification = el
-      console.log(this.notification)
-    })
+      .subscribe((notifications: INotification[]) => {
+        this.notifications = notifications;
+      });
   }
 
 }

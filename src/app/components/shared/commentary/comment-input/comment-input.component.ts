@@ -18,23 +18,26 @@ export class CommentInputComponent {
   private activatedRoute: ActivatedRoute = inject(ActivatedRoute);
 
   comment: string = '';
-  @Input() id: number = null;
+  @Input() currentComment: any;
 
-  @Output() commentAdded:any = new EventEmitter();
+  @Output() commentAdded: any = new EventEmitter();
 
-  
 
-  
-   newComment() {
-    this.commentaryService.createComment(this.comment, Number(this.activatedRoute.snapshot.paramMap.get('id')), this.id)
+
+
+  newComment() {
+    this.commentaryService.createComment(
+      this.comment,
+      Number(this.activatedRoute.snapshot.paramMap.get('id')),
+      this.currentComment?.id,
+      this.currentComment?.user?.id)
       .subscribe(res => {
-        console.log(res)
-       this.clearComment()
+        this.clearComment()
       })
 
   }
 
- clearComment() {
+  clearComment() {
     this.comment = ''
   }
 

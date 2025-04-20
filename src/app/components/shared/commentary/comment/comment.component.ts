@@ -21,7 +21,7 @@ export class CommentComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log(this.comment)
+    console.log(this.comment,'comment')
     if (this.comment && !this.comment.reactions?.isDisliked && !this.comment.reactions?.isLiked) {
       this.comment.reactions.isPristine = true
     } else {
