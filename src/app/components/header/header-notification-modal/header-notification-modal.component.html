@@ -1,7 +1,7 @@
-<div class="notification">
+<div class="notification" >
     <div class="notification__header">
         <h3 class="notification__header-title">
-            Notification
+            Notifications
         </h3>
         <button class="notification__header-btn" (click)="closeModal()">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -11,7 +11,7 @@
             </svg>
         </button>
     </div>
-    <div class="notification__list">
+    <div class="notification__list" (scroll)="onScroll($event)">
 
         @for(notification of notifications ;track notification.id){
         <div class="notification__list-item">

@@ -34,7 +34,7 @@
         @if(currentUser$ | async; as currentUser) {
         <div class="header__user">
             <div class="header__notification">
-                <span class="header__notification--logo" [attr.notification]="notifications.length > 0 ? notifications.length : null" (click)="showModal = !showModal">
+                <span class="header__notification--logo" [attr.notification]="total > 0 ? total : null" (click)="openModal()">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24"
                         fill="currentColor" class="mercado-match" width="24" height="24" focusable="false">
                         <path
@@ -42,7 +42,7 @@
                         </path>
                     </svg>
                     @if(showModal && notifications) {
-                        <app-header-notification-modal [notifications]="notifications" (click)="$event.stopPropagation()" (onCloseModal)="showModal = false"></app-header-notification-modal>
+                        <app-header-notification-modal [notifications]="notifications" (click)="$event.stopPropagation()" (onCloseModal)="showModal = false" (loadNotifications)="loadMore()"></app-header-notification-modal>
                     }
                 </span>
           

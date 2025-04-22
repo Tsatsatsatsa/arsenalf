@@ -19,18 +19,49 @@ export class HeaderComponent implements OnInit {
 
   private authService = inject(AuthService);
   private notificationService = inject(NotificationService);
+  private page: number = 1;
+  private pageSize: number = 5;
+  private lastPage: number;
 
   notifications: INotification[] = [];
   showModal: boolean = false;
   currentUser$: Observable<CurrentUser>;
   currentUser: CurrentUser;
+  total: number;
+
+
 
   ngOnInit(): void {
     this.currentUser$ = this.authService.isAuthenticated();
-    this.notificationService.getNotifications()
-      .subscribe((notifications: INotification[]) => {
-        this.notifications = notifications;
-      });
+    this.getUnreadNotificationsTotal()
   }
 
+  openModal(): void {
+    this.loadMore();
+    this.showModal = !this.showModal
+  }
+
+
+
+  loadMore(): void {
+    if (this.page > this.lastPage) return
+
+    this.notificationService.getNotifications(this.page, this.pageSize)
+      .subscribe((response: { data: INotification[], meta: { total: number, page: number, last_page: number } }) => {
+        if (response && this.page === 1) {
+          this.getUnreadNotificationsTotal()
+        }
+        this.notifications.push(...response.data);
+        this.lastPage = response.meta.last_page
+        this.page++;
+      })
+  }
+
+
+  private getUnreadNotificationsTotal() {
+    this.notificationService.getUnreadNotificationsTotal()
+      .subscribe((total: number) => {
+        this.total = total
+      });
+  }
 }
