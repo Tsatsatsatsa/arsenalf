@@ -10,19 +10,31 @@
             <img class="news-detail__image-img" src="{{post?.imgUrl}}" alt="{{post?.title}}">
         </figure>
 
-        <div class="news-detail__content">
-            <h2 class="news-detail__subtitle">{{post?.shortDescription}}</h2>
-            <p class="news-detail__text">{{post?.article}}</p>
+
+        <div class="news-detail__text-container">
+
+            <div class="news-detail__tag">
+                <app-news-tag></app-news-tag>
+            </div>
+
+            <div class="news-detail__content">
+                <h2 class="news-detail__subtitle">{{post?.shortDescription}}</h2>
+                <p class="news-detail__text">{{post?.article}}</p>
+            </div>
         </div>
+
     </div>
 
 
-   
+
+
+
+
 
     <div class="news-detail--commentaries">
-        <app-comment-input ></app-comment-input>
+        <app-comment-input></app-comment-input>
         @for(commentary of commentaries; track commentary.id) {
-            <app-comment [comment]="commentary"></app-comment>
+        <app-comment [comment]="commentary"></app-comment>
         }
     </div>
 

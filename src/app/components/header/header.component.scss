@@ -110,10 +110,10 @@
     &__notification {
         display: flex;
         margin-right: 14px;
-        padding-top: 12px;
+        padding-top: 8px;
         cursor: pointer;
 
-        &--logo {
+        &-logo {
             position: relative;
 
             &:after {
@@ -136,6 +136,13 @@
                 display: none;
                 content: none;
             }
+        }
+
+        &-logout {
+            display: flex;
+            margin-left: 15px;
+            cursor: pointer;
+            
         }
     }
 

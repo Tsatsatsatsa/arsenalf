@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { AuthService } from '../../services/auth.service';
@@ -19,6 +19,7 @@ export class HeaderComponent implements OnInit {
 
   private authService = inject(AuthService);
   private notificationService = inject(NotificationService);
+  private router = inject(Router);
   private page: number = 1;
   private pageSize: number = 5;
   private lastPage: number;
@@ -29,19 +30,22 @@ export class HeaderComponent implements OnInit {
   currentUser: CurrentUser;
   total: number;
 
-
-
   ngOnInit(): void {
     this.currentUser$ = this.authService.isAuthenticated();
     this.getUnreadNotificationsTotal()
+  }
+
+  private getUnreadNotificationsTotal(): void {
+    this.notificationService.getUnreadNotificationsTotal()
+      .subscribe((total: number) => {
+        this.total = total
+      });
   }
 
   openModal(): void {
     this.loadMore();
     this.showModal = !this.showModal
   }
-
-
 
   loadMore(): void {
     if (this.page > this.lastPage) return
@@ -57,11 +61,8 @@ export class HeaderComponent implements OnInit {
       })
   }
 
-
-  private getUnreadNotificationsTotal() {
-    this.notificationService.getUnreadNotificationsTotal()
-      .subscribe((total: number) => {
-        this.total = total
-      });
+  signOut(): void {
+    this.authService.signOut();
+    this.router.navigate(['/']);
   }
 }

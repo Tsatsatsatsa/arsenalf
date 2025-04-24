@@ -9,10 +9,11 @@ import { CommentComponent } from '../../shared/commentary/comment/comment.compon
 import { CommentInputComponent } from '../../shared/commentary/comment-input/comment-input.component';
 import { switchMap } from 'rxjs';
 import { IPost } from '../../../models/post/post.interface';
+import { NewsTagComponent } from './news-tag/news-tag.component';
 
 @Component({
   selector: 'app-news-detail',
-  imports: [MatInputModule, FormsModule, CommonModule, CommentComponent, CommentInputComponent],
+  imports: [MatInputModule, FormsModule, CommonModule, CommentComponent, CommentInputComponent,NewsTagComponent],
   templateUrl: './news-detail.component.html',
   styleUrl: './news-detail.component.scss'
 })

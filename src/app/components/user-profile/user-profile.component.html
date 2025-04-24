@@ -1,31 +1,56 @@
 <div class="user__profile">
-    <form [formGroup]="postForm" (ngSubmit)="onSubmit()" class="example-form">
-        <mat-form-field class="example-full-width">
-          <mat-label>title</mat-label>
-          <input matInput formControlName="title"  placeholder="title">
-        </mat-form-field>
+  <form [formGroup]="postForm" (ngSubmit)="onSubmit()" class="user__profile-form">
+    <mat-form-field class="user__profile-full-width">
+      <mat-label>Post title</mat-label>
+      <input matInput formControlName="title" placeholder="Post title">
+    </mat-form-field>
 
-        <mat-form-field class="example-full-width">
-            <mat-label>short desc</mat-label>
-            <textarea matInput formControlName="shortDescription" placeholder="short description"></textarea>
-          </mat-form-field>
+    <mat-form-field class="user__profile-full-width">
+      <mat-label>Short description</mat-label>
+      <textarea matInput formControlName="shortDescription" cdkAutosizeMinRows="3" cdkTextareaAutosize
+        #autosize="cdkTextareaAutosize" placeholder="Post short description"></textarea>
+    </mat-form-field>
 
-      
-        <mat-form-field class="example-full-width">
-          <mat-label>Leave a comment</mat-label>
-          <textarea matInput formControlName="article" placeholder="add post"></textarea>
-        </mat-form-field>
 
-        <mat-form-field class="example-full-width">
-            <mat-label>img</mat-label>
-            <input matInput type="url" formControlName="imgUrl"  placeholder="img">
-          </mat-form-field>
-        
-        <button type="submit"> add post</button>
-      </form>
+    <mat-form-field class="user__profile-full-width">
+      <mat-label>Post text</mat-label>
+      <textarea matInput formControlName="article" cdkAutosizeMinRows="3" cdkTextareaAutosize
+        #autosize="cdkTextareaAutosize" placeholder="Add post"></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="user__profile-full-width">
+      <mat-label>Add post image</mat-label>
+      <input matInput type="url" formControlName="imgUrl" placeholder="Add post image">
+    </mat-form-field>
+
+
+    <mat-form-field class="user__profile-full-width">
+      <mat-label>Add Post tags</mat-label>
+      <mat-chip-grid #chipGrid aria-label="Tag selection">
+        @for (option of selectedOptions; track option) {
+        <mat-chip-row (removed)="remove(option)">
+          {{option}}
+          <button matChipRemove [attr.aria-label]="'remove ' + option">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+        }
+      </mat-chip-grid>
+      <input placeholder="Add tag" #TagInput [matChipInputFor]="chipGrid" [matAutocomplete]="auto"
+        formControlName="tag" />
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event); TagInput.value = ''">
+        @for (option of filteredOptions; track option) {
+        <mat-option [value]="option.title"
+          [disabled]="selectedOptions.includes(option.title)">{{option.title}}</mat-option>
+        }
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <button type="submit" mat-flat-button style="width: 25%;">Add post</button>
+  </form>
 </div>
 
 
 
 
-<button type="button" (click)="signOut()">logOut</button>
+<!-- <button type="button" (click)="signOut()">logOut</button> -->
