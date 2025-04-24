@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, of, switchMap} from 'rxjs';
+import { debounceTime, distinctUntilChanged, filter, of, switchMap, takeUntil } from 'rxjs';
 import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { NewsService } from '../news/news.service';
 import { TagService } from '../../services/tag.service';
 import { ITag } from '../../models/tag.interface';
+import { Unsubscribe } from '../shared/unsubscribe/unsubscribe';
 
 @Component({
   selector: 'app-user-profile',
@@ -17,7 +18,7 @@ import { ITag } from '../../models/tag.interface';
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.scss'
 })
-export class UserProfileComponent {
+export class UserProfileComponent extends Unsubscribe {
 
   private newsService = inject(NewsService);
   private tagService = inject(TagService);
@@ -28,6 +29,7 @@ export class UserProfileComponent {
   postForm: FormGroup;
 
   constructor() {
+    super()
     this.postForm = this.fb.group({
       title: ['', Validators.required],
       shortDescription: ['', Validators.required],
@@ -39,15 +41,12 @@ export class UserProfileComponent {
   }
 
   onSearch(): void {
-    this.postForm.get('tag').valueChanges.pipe(
-      debounceTime(300),
+    this.postForm.get('tag')?.valueChanges.pipe(
+      debounceTime(500),
       distinctUntilChanged(),
-      switchMap((el: string) => {
-        if (!el.length || el.length < 3) {
-          return of([])
-        }
-        return this.tagService.getTags(el)
-      })
+      filter((searchTerm: string) => searchTerm?.length >= 3),
+      switchMap((searchTerm: string) => this.tagService.getTags(searchTerm)),
+      takeUntil(this.destroy$)
     ).subscribe((tag: ITag[]) => {
       this.filteredOptions = tag
     })
