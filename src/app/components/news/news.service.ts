@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
+
 import { IPost } from '../../models/post/post.interface';
 import { CreatePost } from '../../models/post/create-post.interface';
 
@@ -23,6 +24,5 @@ export class NewsService {
   createPost(post: CreatePost): Observable<IPost> {
     return this.http.post<IPost>(this.apiUrl + 'posts', post);
   }
-
 
 }

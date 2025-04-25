@@ -1,6 +1,5 @@
-import { Component, EventEmitter, HostListener, Input, OnInit, Output, inject } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { INotification } from '../../../models/notification.interface';
-import { NotificationService } from '../../notification/notification.service';
 
 @Component({
   selector: 'app-header-notification-modal',

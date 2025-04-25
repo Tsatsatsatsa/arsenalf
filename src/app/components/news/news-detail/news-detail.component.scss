@@ -24,12 +24,28 @@
         margin-inline: auto;
     }
 
-    &__tag{
-        border:1px solid var( --color-gray-light-hover);
+    &__tag {
+        border: 1px solid var(--color-gray-light-hover);
         border-radius: 4px;
         padding: 30px;
         margin-bottom: 15px;
 
+        &-header {
+            margin: 0 0 10px 0;
+        }
+
+        &-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        &-link {
+
+
+            &:hover {
+                color: var(--color-accent-hover);
+            }
+        }
     }
 
     &__subtitle {
@@ -60,7 +76,7 @@
         padding: 15px;
         // display: flex;
         // flex-direction: column;
-        
+
     }
 
 }

@@ -1,0 +1,13 @@
+<div class="tag__header-container">
+    <h1 class="tag__header">{{tag.title}}</h1>
+</div>
+<div class="tag__container">
+    @for(post of posts; track post.id) {
+    <app-news-card [post]="post"></app-news-card>
+    }
+</div>
+
+
+
+
+    

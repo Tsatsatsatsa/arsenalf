@@ -1,3 +1,4 @@
+import { ITag } from "../tag.interface";
 import { CreatePost } from "./create-post.interface";
 
 export interface IPost extends CreatePost {
@@ -5,4 +6,5 @@ export interface IPost extends CreatePost {
   commentaries: any,
   createdAt: string;
   updatedAt: string;
+  tags: ITag[];
 }

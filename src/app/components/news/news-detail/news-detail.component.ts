@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
 import { NewsService } from '../news.service';
 import { FormsModule } from '@angular/forms';
@@ -9,11 +9,10 @@ import { CommentComponent } from '../../shared/commentary/comment/comment.compon
 import { CommentInputComponent } from '../../shared/commentary/comment-input/comment-input.component';
 import { switchMap } from 'rxjs';
 import { IPost } from '../../../models/post/post.interface';
-import { NewsTagComponent } from './news-tag/news-tag.component';
 
 @Component({
   selector: 'app-news-detail',
-  imports: [MatInputModule, FormsModule, CommonModule, CommentComponent, CommentInputComponent,NewsTagComponent],
+  imports: [MatInputModule, FormsModule, CommonModule, CommentComponent, CommentInputComponent, RouterModule],
   templateUrl: './news-detail.component.html',
   styleUrl: './news-detail.component.scss'
 })
@@ -24,7 +23,7 @@ export class NewsDetailComponent implements OnInit {
   private newsService = inject(NewsService);
   private activatedRoute: ActivatedRoute = inject(ActivatedRoute);
 
-   post: IPost;
+  post: IPost;
   commentaries
 
 
@@ -40,19 +39,15 @@ export class NewsDetailComponent implements OnInit {
     if (postId) {
       this.newsService.getPostById(postId).pipe(
         switchMap((post: IPost) => {
-          console.log(post)
           this.post = post
           return this.commentaryService.getCommentariesByPostId(this.post.id)
         })
       )
         .subscribe(commentaries => {
-          console.log(commentaries)
           this.commentaries = commentaries
         })
     }
   }
-
-
 
   private setupCommentSubscription(): void {
     this.commentaryService.commentary$.pipe(

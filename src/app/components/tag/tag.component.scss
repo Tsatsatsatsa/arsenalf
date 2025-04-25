@@ -1,0 +1,24 @@
+.tag__header-container {
+    height: 96px;
+    background-color: var(--color-light);
+    border-radius: 4px;
+    margin-bottom: 24px;
+}
+
+.tag__header {
+    font-size: 56px;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    padding-inline: 28px;
+}
+
+.tag__container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+
+    app-news-card {
+        width: calc(50% - 15px);
+    }
+}

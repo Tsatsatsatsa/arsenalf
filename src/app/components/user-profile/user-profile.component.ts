@@ -8,7 +8,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 
 import { NewsService } from '../news/news.service';
-import { TagService } from '../../services/tag.service';
+import { TagService } from '../tag/tag.service';
 import { ITag } from '../../models/tag.interface';
 import { Unsubscribe } from '../shared/unsubscribe/unsubscribe';
 
@@ -45,7 +45,7 @@ export class UserProfileComponent extends Unsubscribe {
       debounceTime(500),
       distinctUntilChanged(),
       filter((searchTerm: string) => searchTerm?.length >= 3),
-      switchMap((searchTerm: string) => this.tagService.getTags(searchTerm)),
+      switchMap((searchTerm: string) => this.tagService.searchTags(searchTerm)),
       takeUntil(this.destroy$)
     ).subscribe((tag: ITag[]) => {
       this.filteredOptions = tag
