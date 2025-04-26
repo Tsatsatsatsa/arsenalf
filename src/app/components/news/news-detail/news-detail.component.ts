@@ -7,7 +7,7 @@ import { CommentaryService } from '../../../services/commentary.service';
 import { CommonModule } from '@angular/common';
 import { CommentComponent } from '../../shared/commentary/comment/comment.component';
 import { CommentInputComponent } from '../../shared/commentary/comment-input/comment-input.component';
-import { switchMap } from 'rxjs';
+import { switchMap, tap } from 'rxjs';
 import { IPost } from '../../../models/post/post.interface';
 
 @Component({
@@ -24,29 +24,36 @@ export class NewsDetailComponent implements OnInit {
   private activatedRoute: ActivatedRoute = inject(ActivatedRoute);
 
   post: IPost;
+  similarPosts:IPost[] = []
   commentaries
 
 
   ngOnInit(): void {
     window.scrollTo({ top: 0, behavior: 'instant' });
-    this.loadPostAndComments();
+    const postId = +this.activatedRoute.snapshot.paramMap.get('id');
+    this.loadPostAndComments(postId);
+
     this.setupCommentSubscription();
   }
 
 
-  loadPostAndComments() {
-    const postId = this.activatedRoute.snapshot.paramMap.get('id');
-    if (postId) {
-      this.newsService.getPostById(postId).pipe(
-        switchMap((post: IPost) => {
-          this.post = post
-          return this.commentaryService.getCommentariesByPostId(this.post.id)
-        })
-      )
-        .subscribe(commentaries => {
-          this.commentaries = commentaries
-        })
-    }
+  loadPostAndComments(postId: number) {
+    if (!postId) return;
+
+    this.newsService.getPostById(postId).pipe(
+      tap((post: IPost) => this.post = post),
+      switchMap((post: IPost) => {
+        this.commentaryService.getCommentariesByPostId(post.id).subscribe(
+          commentaries => this.commentaries = commentaries,
+          error => console.error('Error loading commentaries:', error)
+        );
+
+        return this.newsService.getSimilarPostsByTag(post.tags.map(tag => tag.id));
+      })
+    ).subscribe(
+      similarPosts => this.similarPosts = similarPosts,
+      error => console.error('Error loading post or similar posts:', error)
+    );
   }
 
   private setupCommentSubscription(): void {
@@ -60,13 +67,5 @@ export class NewsDetailComponent implements OnInit {
       }
     });
   }
-
-
-
-
-
-
-
-
 
 }

@@ -1,21 +1,21 @@
 <div class="news-detail">
-    <div class="news-detail__container">
+    <div class="news-detail__wrapper">
+        <div class="news-detail__container">
 
-        <h1 class="news-detail__title">{{post?.title}}</h1>
-        <div class="news-detail__meta">
-            <span class="news-detail__date">{{post?.createdAt}}</span>
-        </div>
+            <h1 class="news-detail__title">{{post?.title}}</h1>
+            <div class="news-detail__meta">
+                <span class="news-detail__date">{{post?.createdAt}}</span>
+            </div>
 
-        <figure class="news-detail__image">
-            <img class="news-detail__image-img" src="{{post?.imgUrl}}" alt="{{post?.title}}">
-        </figure>
+            <figure class="news-detail__image">
+                <img class="news-detail__image-img" src="{{post?.imgUrl}}" alt="{{post?.title}}">
+            </figure>
 
 
-        <div class="news-detail__text-container">
             <div class="news-detail__tag">
                 <h3 class="news-detail__tag-header">Tags</h3>
                 <div class="news-detail__tag-container">
-                    @for(tag of post.tags; track tag.id){
+                    @for(tag of post?.tags; track tag.id){
                     <a [routerLink]="['/tags', tag.id]" class="news-detail__tag-link">{{tag.title}}</a>
                     }
                 </div>
@@ -27,8 +27,22 @@
             </div>
         </div>
 
-    </div>
 
+        <div class="news-detail__sim-news" style="height: 360px;">
+            <h3 class="news-detail__sim-news-header">Similar News</h3>
+            <div class="news-detail__sim-news-container">
+                @for(similarPost of similarPosts;track similarPost.id) {
+                <a href="" class="news-detail__sim-news-card">
+                    <div class="news-detail__sim-news-text">
+                        {{similarPost.title}}
+                    </div>
+                    <img src="{{similarPost?.imgUrl}}" alt="{{similarPost?.title}}" class="news-detail__sim-news-image">
+                </a>
+                }
+            </div>
+        </div>
+
+    </div>
 
 
 

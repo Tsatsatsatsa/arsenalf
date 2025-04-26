@@ -17,12 +17,16 @@ export class NewsService {
     return this.http.get<IPost[]>(this.apiUrl + 'posts');
   }
 
-  getPostById(id: string): Observable<IPost> {
+  getPostById(id: number): Observable<IPost> {
     return this.http.get<IPost>(this.apiUrl + `posts/${id}`)
   }
 
   createPost(post: CreatePost): Observable<IPost> {
     return this.http.post<IPost>(this.apiUrl + 'posts', post);
+  }
+
+  getSimilarPostsByTag(tagIds: number[]):Observable<IPost[]> {
+    return this.http.get<IPost[]>(this.apiUrl + `posts/similar?tagIds=${tagIds}`)
   }
 
 }

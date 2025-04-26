@@ -20,6 +20,7 @@ export class TagComponent implements OnInit {
   tag: ITag;
 
   ngOnInit(): void {
+    window.scrollTo({ top: 0, behavior: 'instant' });
     const tagId = +this.activatedRoute.snapshot.paramMap.get('id');
     this.getPostsByTagId(tagId);
     this.getTagById(tagId);

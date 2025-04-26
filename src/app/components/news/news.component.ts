@@ -26,5 +26,4 @@ export class NewsComponent implements OnInit {
       )
   }
 
-
 }
