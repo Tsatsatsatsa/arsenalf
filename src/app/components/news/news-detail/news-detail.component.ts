@@ -9,10 +9,11 @@ import { CommentComponent } from '../../shared/commentary/comment/comment.compon
 import { CommentInputComponent } from '../../shared/commentary/comment-input/comment-input.component';
 import { switchMap, tap } from 'rxjs';
 import { IPost } from '../../../models/post/post.interface';
+import { DateAgoPipe } from '../../pipe/date-ago.pipe';
 
 @Component({
   selector: 'app-news-detail',
-  imports: [MatInputModule, FormsModule, CommonModule, CommentComponent, CommentInputComponent, RouterModule],
+  imports: [MatInputModule, FormsModule, CommonModule, CommentComponent, CommentInputComponent, RouterModule,DateAgoPipe],
   templateUrl: './news-detail.component.html',
   styleUrl: './news-detail.component.scss'
 })

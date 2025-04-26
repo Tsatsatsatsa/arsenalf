@@ -4,7 +4,9 @@
 
             <h1 class="news-detail__title">{{post?.title}}</h1>
             <div class="news-detail__meta">
-                <span class="news-detail__date">{{post?.createdAt}}</span>
+                <span class="news-detail__date">
+                    {{(post?.createdAt | dateAgo) ?(post?.createdAt | dateAgo) : (post?.createdAt | date:'dd--MM--yyyy HH:mm')}}
+                </span>
             </div>
 
             <figure class="news-detail__image">

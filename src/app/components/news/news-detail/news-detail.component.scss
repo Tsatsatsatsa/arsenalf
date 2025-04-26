@@ -14,7 +14,7 @@
     }
 
     &__title {
-        font-size: 36px;
+        // font-size: 24px;
     }
 
     &__date {
@@ -27,7 +27,7 @@
     &__container {
         max-width: 988px;
         margin-inline: auto;
-        margin-bottom: 50px;
+        padding-block: 25px;
     }
 
     &__tag {
@@ -110,6 +110,7 @@
         &-card {
             height: 220px;
             min-width: calc((93% / 3));
+            max-width: calc((93% / 3));
             border: 1px solid var(--color-gray-light-hover);
             border-radius: 4px;
             position: relative;
