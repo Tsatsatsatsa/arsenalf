@@ -49,7 +49,7 @@ export class NewsDetailComponent implements OnInit {
           error => console.error('Error loading commentaries:', error)
         );
 
-        return this.newsService.getSimilarPostsByTag(post.tags.map(tag => tag.id));
+        return this.newsService.getSimilarPostsByTag(post.tags.map(tag => tag.id),this.post.id);
       })
     ).subscribe(
       similarPosts => this.similarPosts = similarPosts,

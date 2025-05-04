@@ -3,6 +3,7 @@ import { Injectable, inject } from "@angular/core";
 import { Observable } from "rxjs";
 import { ITag } from "../../models/tag.interface";
 import { IPost } from "../../models/post/post.interface";
+import { environment } from "../../../environments/environments";
 
 
 
@@ -11,7 +12,7 @@ import { IPost } from "../../models/post/post.interface";
 })
 export class TagService {
 
-    private readonly apiUrl: string = 'http://localhost:3000/';
+    private readonly apiUrl: string = environment.apiUrl;
     private http: HttpClient = inject(HttpClient);
 
 

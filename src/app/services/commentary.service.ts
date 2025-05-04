@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, tap } from 'rxjs';
+import { environment } from '../../environments/environments';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommentaryService {
 
-  private apiUrl: string = 'http://localhost:3000/';
+  private readonly apiUrl: string = environment.apiUrl;
   private http = inject(HttpClient);
   private commentarySubject = new BehaviorSubject<any>(null);
   commentary$ = this.commentarySubject.asObservable();

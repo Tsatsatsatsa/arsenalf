@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { TokenService } from './token.service';
 import { CurrentUser } from '../models/current-user.interface';
+import { environment } from '../../environments/environments';
 
 
 
@@ -11,7 +12,7 @@ import { CurrentUser } from '../models/current-user.interface';
 })
 export class AuthService {
 
-  private readonly apiUrl: string = 'http://localhost:3000/';
+  private readonly apiUrl: string = environment.apiUrl;
   private http: HttpClient = inject(HttpClient);
   private tokenService = inject(TokenService);
   private authStatus: BehaviorSubject<CurrentUser | null> = new BehaviorSubject<CurrentUser | null>(null);
