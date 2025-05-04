@@ -31,7 +31,7 @@
 
             </ul>
         </nav>
-        @if(currentUser$ | async; as currentUser) {
+        @if(activeUser$ | async; as activeUser) {
         <div class="header__user">
             <div class="header__notification">
                 <span class="header__notification-logo" [attr.notification]="total > 0 ? total : null"
@@ -51,8 +51,8 @@
                 </span>
             </div>
             <a routerLink="/user-profile" class="header__link">
-                <p class="header__link--name">{{currentUser.username}}</p>
-                <div class="header__link--initials">{{currentUser.username[0]}}</div>
+                <p class="header__link--name">{{activeUser.username}}</p>
+                <div class="header__link--initials">{{activeUser.username[0]}}</div>
             </a>
             <span class="header__notification-logout" (click)="signOut()">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" height="28" viewBox="0 0 24 24" width="28">

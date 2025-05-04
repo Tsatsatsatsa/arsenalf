@@ -5,9 +5,9 @@ import { Observable } from 'rxjs';
 
 import { AuthService } from '../../services/auth.service';
 import { NotificationService } from '../notification/notification.service';
-import { CurrentUser } from '../../models/current-user.interface';
 import { INotification } from '../../models/notification.interface';
 import { HeaderNotificationModalComponent } from './header-notification-modal/header-notification-modal.component';
+import { ActiveUser } from '../../models/active-user.interface';
 
 @Component({
   selector: 'app-header',
@@ -26,12 +26,12 @@ export class HeaderComponent implements OnInit {
 
   notifications: INotification[] = [];
   showModal: boolean = false;
-  currentUser$: Observable<CurrentUser>;
-  currentUser: CurrentUser;
+  activeUser$: Observable<ActiveUser>;
+  activeUser: ActiveUser;
   total: number;
 
   ngOnInit(): void {
-    this.currentUser$ = this.authService.isAuthenticated();
+    this.activeUser$ = this.authService.isAuthenticated();
     this.getUnreadNotificationsTotal()
   }
 
